@@ -17,7 +17,7 @@ int main()
    
    intialiser_back( &b );  
    
-while(c==1)
+while(c==1) //game loop
 {
      while(SDL_PollEvent(&event))
      {
@@ -42,8 +42,8 @@ while(c==1)
    SDL_FreeSurface(screen);
    SDL_Quit(); 
 
-}
 
+}
 
 
 
