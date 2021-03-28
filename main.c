@@ -1,77 +1,328 @@
 #include "header.h"
+//#include "seifheader.h"
 
 int main()
 {
-
-  int c=1; 
-  
-  
-  
-  SDL_Surface *screen=NULL;
-  SDL_Event event;
-  
-  background back; 
-  personne p;
-  
-  
-  SDL_Init(SDL_INIT_VIDEO);
-  SDL_WM_SetCaption("game",NULL);
-  screen=SDL_SetVideoMode(1920,960,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
-  
-  
-  //personne personnage;
-  //init_perso(&personnage); // is needed for testing scrolling with perso_p
-
-  intialiser_back(&back); 
-
-   while(c==1)
-  {   
-  
+   char path_bg[]="bg.png"; char path_p[]="p.png"; char path_es[]="es.png";
+ //  char path_ob[]="nails.png"; char path_fire[]="fire_ball"; char path_life[]="life";
    
+   background b;
+   personne p;
+   surface * screen;
+   event  event;
+   int c=1, width=1400, height=600;
    
-     // affichage background & scrolling :	
-   scrolling( & p , &back ); // perso's needed for scrolling to properly work
-   affichback( & back,screen);
+   c=init_sdl(); 
+   set_screen_void(&screen,width,height);
+   
+   intialiser_back( &b );  
+   
+while(c==1)
+{
+     while(SDL_PollEvent(&event))
+     {
+      quit_event(&event,&c);
+     }
 
-   SDL_Delay(1000/60);
+    //affichage bg et scroling
+    affichback(&b,screen);
    
 
-   SDL_Flip(screen); // mise a jour .
-	
-   while(SDL_PollEvent(&event))
+    SDL_Delay(1000/60); 
+   
+
+    SDL_Flip(screen);
+    
+}
+   //for(int i=0;i<6;i++)
+   //SDL_FreeSurface(es->tab[i]);
+   
+   //SDL_FreeSurface(p.image);
+   SDL_FreeSurface(b.image);
+   SDL_FreeSurface(screen);
+   SDL_Quit(); 
+
+}
+
+
+
+
+
+
+void intialiser_back(background *back) 
+{ 
+char chaine[]="stage.png";
+char chaine1[]="bg.png";
+back->image=IMG_Load(chaine1);
+
+back->pos_bg.x=0;
+back->pos_bg.y=0;  
+back->pos_bg.h=600;
+back->pos_bg.w=1400;
+}
+
+void affichback(background *back,SDL_Surface *ecran)
+{ 
+
+SDL_BlitSurface( back->image,&back->pos_bg, ecran,NULL);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int init_sdl()
+{
+   if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER )!=0)
    {
-	switch(event.type ) 
+   printf("\n error initialasing %s",SDL_GetError());
+   return 0; // affec t it to the game loop to not enter in case of error;
+   }else
+   return 1; 
+}
+
+void set_screen_void(surface ** screen,int width,int height)
+{  
+   
+   SDL_WM_SetCaption("My Game Window",NULL);
+   *screen=SDL_SetVideoMode(width,height,32,SDL_HWSURFACE | SDL_DOUBLEBUF );
+}
+
+void quit_event(SDL_Event *event , int * loop) // better used in void mode
+{
+  switch(event->type ) 
       { 
         case SDL_QUIT:  
-        c=0;
-      
+        *loop=0;
+        // dont forget to add the other loops to quit completly the window
         break;  
-        case SDL_KEYDOWN:   
-          switch(event.key.keysym.sym)
+        case SDL_KEYDOWN:  
+          switch(event->key.keysym.sym)
            {
              case SDLK_ESCAPE : 
              case SDLK_q: 
-              c=0;  
+             *loop=0;  // quit current loop only 
               break ;
            } 
         break;     
       }
-     }
-     
-     
-  }// end of game_loop
-  
- 
- //do not forget to free all surfaces created. 
-SDL_FreeSurface(screen);   
-SDL_FreeSurface(back.image);
-//SDL_FreeSurface( !!!!!!!! );
-//SDL_FreeSurface( !!!!!!!!!! );
-//SDL_FreeSurface( !!!!!!!!!!! );
-//SDL_FreeSurface( !!!!!!!!!!! );
-
-SDL_Quit();
-    
-	return 0;
 }
 
