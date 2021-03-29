@@ -15,9 +15,12 @@ SDL_Surface * image;
 }personne;
 
 //seif
+
 typedef struct{
 SDL_Surface * image;
-SDL_Rect pos_es; 
+SDL_Rect pos_e; 
+SDL_Rect pos_s; 
+int direction;
 }ennemi;
 
 typedef struct{
