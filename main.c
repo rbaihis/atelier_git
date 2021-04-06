@@ -6,38 +6,42 @@ int main()
    char path_bg[]="bg.png"; char path_p[]="p.png"; char path_es[]="es.png";
  //  char path_ob[]="nails.png"; char path_fire[]="fire_ball"; char path_life[]="life";
    
-   background b;
-   personne p;
+   background b;  
+   personne p;  
    surface * screen;
    event  event;
-   int c=1, width=1400, height=600;
    
+   int c=1, width=1400, height=600; // better to use variable to work for everyone
+   
+   // to be deleted when attached to the menu
    c=init_sdl(); 
    set_screen_void(&screen,width,height);
+   //------------------------------------------
    
-   intialiser_back( &b );  
+   loadbg( &b );  // a suprimer and replaced by Yesmin's " initialiser_background();
    
 while(c==1) //game loop
 {
-     while(SDL_PollEvent(&event))
+     while(SDL_PollEvent(&event)) // add events call functions here inside boucle
      {
       quit_event(&event,&c);
      }
 
-    //affichage bg et scroling
-    affichback(&b,screen);
+
+
+    
+    blitbg(&b,screen);// to be replaced by void  afficherBack(); by yesmin .
    
 
-    SDL_Delay(1000/60); 
-   
 
-    SDL_Flip(screen);
+
+
+    SDL_Delay(1000/60); // slow_down boucle de jeu 
+    SDL_Flip(screen); // update doublebuff
     
 }
-   //for(int i=0;i<6;i++)
-   //SDL_FreeSurface(es->tab[i]);
-   
-   //SDL_FreeSurface(p.image);
+
+                      // free Ram free functions and 
    SDL_FreeSurface(b.image);
    SDL_FreeSurface(screen);
    SDL_Quit(); 
@@ -49,7 +53,236 @@ while(c==1) //game loop
 
 
 
-void intialiser_back(background *back) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------- to be deleted when yesmin put her code 
+
+void loadbg(background *back) 
 { 
 char chaine[]="stage.png";
 char chaine1[]="bg.png";
@@ -61,234 +294,17 @@ back->pos_bg.h=600;
 back->pos_bg.w=1400;
 }
 
-void affichback(background *back,SDL_Surface *ecran)
+
+void blitbg(background *back,SDL_Surface *ecran)
 { 
 
 SDL_BlitSurface( back->image,&back->pos_bg, ecran,NULL);
 }
+//---------- -------------------------------------------
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//------------------------------to be deleted from main and here when linked to menue
 int init_sdl()
 {
    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER )!=0)
@@ -325,4 +341,4 @@ void quit_event(SDL_Event *event , int * loop) // better used in void mode
         break;     
       }
 }
-
+//-------------------------------------------------------------
