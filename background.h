@@ -10,26 +10,11 @@
 #include <math.h>
 #include <time.h>
 
-
-typedef struct
-{
-SDL_Surface * im_perso;
-SDL_Rect pos_p; 
-}personne;
+#include "header.h"
 
 
 
 
-
-typedef struct
-{
-SDL_Surface *im_bg ;
-SDL_Surface *text,*title;
-SDL_Rect pos_bg,pos_right,pos_left,pos_mid,postxt,postitle;
-TTF_Font *police,*police2;
-Mix_Music *music;
-Mix_Chunk *son;
-}background;
 
 
 void intialiser_back(background *b);

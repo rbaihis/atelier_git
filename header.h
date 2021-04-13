@@ -10,8 +10,9 @@
 #include <SDL/SDL_mixer.h>
 
 // mouhamed
-typedef struct{
-SDL_Surface * image;
+typedef struct{  //   this os for testing only not mohamed's struct
+SDL_Surface * im_perso;
+SDL_Rect pos_p; 
 }personne;
 //-----------------------------------------
 
@@ -26,21 +27,36 @@ SDL_Surface * image;
 SDL_Rect pos_prize; //  <== prize is position rect 
 }prize;       // coins , hearts ......
 
+
+
 typedef struct{
 SDL_Surface * image;
-SDL_Rect pos_e; // <== prize is position rect 
+SDL_Rect pos_e;  // ennemi rect for collision 
 SDL_Rect pos_s; 
 int direction;
-int faster;
-float x_vel,y_vel,x_pos,y_pos;
+int faster , speed ; // have to be set in main 1st
+int x_vel, y_vel, x_pos, y_pos; 
+int screenheight, screenwidth;
+int collision;
 }ennemi;
+
+
 //-------------------------------------
 
 //yesmin
-typedef struct{
-SDL_Surface * image;
-SDL_Rect pos_bg;  
+
+
+
+typedef struct
+{
+SDL_Surface *im_bg ;
+SDL_Surface *text,*title;
+SDL_Rect pos_bg,pos_right,pos_left,pos_mid,postxt,postitle;
+TTF_Font *police,*police2;
+Mix_Music *music;
+Mix_Chunk *son;
 }background;
+
 
 typedef SDL_Surface surface;
 typedef SDL_Rect rect;
@@ -61,25 +77,36 @@ void blitbg(background *back,SDL_Surface *ecran); //blit backg to be deleted
 //_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_
 
 
-// *-*-*-*-Enemi_prototype_ES ---**-*- => SEIF
-void load_simple_es(ennemi *simple_es,char * path);//ok
-void afficher_ennemi(ennemi es, SDL_Surface * screen);//***
-void anim_loading(ennemi * es);//ok
-void animer_ennemi( ennemi * es);//ok
-void deplacer_ennemi( ennemi * es,int W,int H);//ok 
-int collision_bb( personne p, ennemi es);//ok
 
-//my optional func
-void afficher_ennemi2(ennemi * es, SDL_Surface * screen);
-void deplacement_settings(ennemi * es,int speed,int s_posx ,int s_posy);
-void deplacement_settings2(ennemi * es,personne *p,int speed);
-// *-*-*-*-Enemi_prototype_ES ---**-*- 
+// seif allah rbaihi 
+// *-*-*-*-Enemi_prototype_ES ---**-*-
+// *-*-*-*-Enemi_prototype_ES ---**-*-  
+void initennemi(ennemi *es);//ok****
+void afficher_ennemi(ennemi es, SDL_Surface * screen);//ok***
+void animer_ennemi( ennemi * es);//ok*****
+void deplacer_ennemi( ennemi * es);//ok****
+// es other deplacement 
+void updown();
+void rightleft(ennemi * e);
+
+int collision_bb( personne p, ennemi es);//ok*****
+
+//my optional funct
+void afficher_ennemi2(ennemi * es, SDL_Surface * screen); // calling animerfunction inside if used 
+void deplacement_settings(ennemi * es,int s_posx ,int s_posy); // inter x and y position via parametre
+void deplacement_settings2(ennemi * es,personne *p); // placing ennemi in fron of perso by just call it 
 
 
 
 
 //Background tache: => Yesmin mezel
 //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+
+
+
+
 
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
