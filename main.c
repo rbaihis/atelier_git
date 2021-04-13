@@ -1,7 +1,7 @@
 #include "background.h"
 int main()
 {
-  int width=1920,height=750;// window size
+  int width=1900,height=750;// window size
   // ES init 
   ennemi es ; int x=1,y=0,z=0; int speed=5;  es.speed=speed; es.faster=1; 
   es.screenheight= height; es.screenwidth=  width ; SDL_Surface * a[5];
@@ -18,7 +18,7 @@ int pasAvancement=0;
   
   SDL_Init(SDL_INIT_VIDEO);
   SDL_WM_SetCaption("game",NULL);
-  ecran=SDL_SetVideoMode(1920,750,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
+  ecran=SDL_SetVideoMode(width,height,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
   
   
   personne p ;
