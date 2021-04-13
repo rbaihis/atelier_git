@@ -20,14 +20,18 @@ SDL_Rect pos_p;
 typedef struct{
 SDL_Surface * image;
 SDL_Rect pos_ob; //  <== obstacle's is position rect 
+SDL_Rect pos_sheet;
+int screenheight, screenwidth;
+int collision;
 }obstacle;       //obstacle ... losing 
 
 typedef struct{
 SDL_Surface * image;
 SDL_Rect pos_prize; //  <== prize is position rect 
+SDL_Rect pos_sheet;
+int screenheight, screenwidth;
+int collision;
 }prize;       // coins , hearts ......
-
-
 
 typedef struct{
 SDL_Surface * image;
@@ -44,8 +48,6 @@ int collision;
 //-------------------------------------
 
 //yesmin
-
-
 
 typedef struct
 {
