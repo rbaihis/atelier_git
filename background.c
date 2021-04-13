@@ -7,8 +7,8 @@ void init_perso(personne *p)
 
 {
     p->pos_p.x=890;
-    p->pos_p.y=690;
-    p->im_perso=IMG_Load("d1.png");
+    p->pos_p.y=5800;
+    p->im_perso=IMG_Load("p.png");
 }
 ///***************************************
 
