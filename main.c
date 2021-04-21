@@ -1,3 +1,4 @@
+#include "header.h"
 #include "background.h"
 int main()
 {
