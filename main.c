@@ -95,6 +95,31 @@ pasAvancement-=1;
      
      
      
+     ///haaaaaammmmmmmaaaaaaa
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      // seif's ES function called  ****************************************************
 	     afficher_ennemi(es, ecran);
              animer_ennemi(&es);
