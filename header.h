@@ -8,6 +8,9 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
+typedef SDL_Surface surface;
+typedef SDL_Rect rect;
+typedef SDL_Event event;
 
 // mouhamed
 typedef struct{  //   this os for testing only not mohamed's struct
@@ -60,13 +63,8 @@ Mix_Chunk *son;
 }background;
 
 
-typedef SDL_Surface surface;
-typedef SDL_Rect rect;
-typedef SDL_Event event;
-//-----------------------------------------
-// test only bech yetfass5ou
 
-// 
+
 
 //basic_initial // hethom ye5dmou
 //-_-_-_--_-_--_-_-_--_-__-__-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
@@ -122,5 +120,3 @@ void deplacement_settings2(ennemi * es,personne *p); // placing ennemi in fron o
 //-------------------------------------------------------
 
 #endif //  #include "header.h"
-
-

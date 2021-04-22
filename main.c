@@ -17,31 +17,34 @@ int pasAvancement=0;
   SDL_Event event;
   SDL_Surface *ecran=NULL;
   
+  // to be deleted when attching the game to the menu 
   SDL_Init(SDL_INIT_VIDEO);
   SDL_WM_SetCaption("game",NULL);
   ecran=SDL_SetVideoMode(width,height,32,SDL_HWSURFACE|SDL_DOUBLEBUF);
-  
+  //-------------------------------------------------------
   
   personne p ;
-  background back; // declaration struct_background
+  background back; // declaration struct_background  /--YEsmin--/
   
-   intialiser_back(&back);  // loading 
-   init_perso(&p);
-  //--------------------------
+   intialiser_back(&back);  // loading background / Yesmin /
+  //-------------------------- end
+  
+   init_perso(&p); // hethi tetbadel bel fonction mte3 hamma 
 
 
-   // ES init function 
+   // ES init function  / seif /
     initennemi(&es);
     deplacement_settings2( &es , &p );
     a[0]=es.image;
-    // end
+    // --------------------------------end
 
    while(c==1)
   {   
   
-   affichback(&back,ecran);
+   affichback(&back,ecran); // affichage background / yesmin /
    
-   afficher_perso(&p,ecran);
+   
+   afficher_perso(&p,ecran); // change by hamma 's original function
    
 
   // afficher_perso(&personnage,ecran,event); // for testing scrolling with perso_p
@@ -52,7 +55,7 @@ int pasAvancement=0;
 	
   
 	
-   while(SDL_PollEvent(&event))
+   while(SDL_PollEvent(&event)) // teba3 yesmin 
    {
 	switch(event.type ) 
       { 
@@ -69,7 +72,7 @@ int pasAvancement=0;
               break ;
               
               case SDLK_RIGHT:
-direction=1;
+direction=1;  
 pasAvancement+=1;
               
               if((p.pos_p.x > 0)&&(p.pos_p.x <1280))
@@ -88,12 +91,13 @@ pasAvancement-=1;
            } 
         break;     
       }
-     }
+     }   //***********************s teba3 yesmin ends 
+     
+     
      
      // seif's ES function called  ****************************************************
 	     afficher_ennemi(es, ecran);
              animer_ennemi(&es);
-        
 	
 	if(back.pos_bg.x==1400)  // setting where ES will show up 
                   { 
@@ -124,8 +128,7 @@ pasAvancement-=1;
     
        if(collision_bb(p,es)== 1)
           p.pos_p.x += 200;
-	
-	//************************************************************************
+	// ************************** end . 
 	
 	
      
