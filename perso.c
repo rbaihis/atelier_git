@@ -31,7 +31,7 @@ p->mvtx=5;
 p->mvty=430;
 p->accelerer=10;
 p->super_jump=390;
-
+p->up=0;
 p->direction=0;
 p->num=0;
 p->etat=0;
@@ -71,6 +71,45 @@ p->vie_perso.imvie[3] =IMG_Load("death.png");
 }
 ///***************************
 
+void init_deuxieme_Perso(personne *a)
+{
+
+a->image[0][0]=NULL;
+a->image[0][1]=NULL;
+a->image[0][2]=NULL;
+
+a->image[0][0]=NULL;
+a->image[1][0]=NULL;
+a->image[2][0]=NULL;
+
+a->image[0][0] =IMG_Load("d1.png");
+a->image[0][1] =IMG_Load("d2.png");
+a->image[0][2]=IMG_Load("d3.png");
+
+a->image[1][0] =IMG_Load("g1.png");
+a->image[1][1] =IMG_Load("g2.png");
+a->image[1][2] =IMG_Load("g3.png");
+
+
+a->pos_p.x=300;
+a->pos_p.y=500;
+
+a->gravite=500;
+a->mvtx=5;
+a->mvty=430;
+a->accelerer=10;
+a->super_jump=390;
+a->up=0;
+a->direction=0;
+a->num=0;
+a->etat=0;
+
+
+
+}
+
+///****************************
+
 void afficherPerso(personne p, SDL_Surface *screen)
 {
 SDL_BlitSurface(p.image[p.direction][p.num], NULL, screen,&p.pos_p);
@@ -86,20 +125,23 @@ void deplacer_perso(personne *p)
 {
   
     
-              if( p->direction=0)
+              if(p->direction==0)
               {
                p->pos_p.x+=p->mvtx;
-               SDL_Delay(20) ;  p->
-               num++;
+              
+               
                p->etat=1;              
-                           }
+               
+               }
                   
                         
-               else if(p->direction=1)
+               else if(p->direction==1)
                {
+               
                p->pos_p.x-=p->mvtx;
-               SDL_Delay(20) ; p->num++;
+               
                p->etat=1;
+               
                }
                    
 animer_perso(p);
@@ -108,7 +150,7 @@ animer_perso(p);
 
 void accelrer_perso(personne *p)
 {   
-SDL_Delay(10);p->num++;
+        
 
       if (p->direction==0)
          p->pos_p.x+=p->accelerer; 
@@ -122,44 +164,24 @@ animer_perso(p);
 
 ///***********************************
 
- void jump_perso(personne *p,SDL_Event * event)
+ void jump_perso(personne *p)
 {
-int test;
- switch(event->type ) 
-   { 
- 
-
-       case SDL_KEYDOWN:
-
-            switch(event->key.keysym.sym)
-             {    
-                 case SDLK_UP: 
-                 test=1;
+               
+                    if(p->up==1)
+                    {
+              
                       p->num=1;       /// animate the jump
                       p->pos_p.y=p->mvty;      /// jump
-                  while((&p->direction==0)&&(test==1)) 
-                     {
-                      p->pos_p.x+=p->mvtx; 
-                         test=0;  
-                            }
-                   if(p->direction==1)
-                    p->pos_p.x-=p->mvtx;
-                                                           
-                        break ;
-              }
-         break;  
-     
-         case SDL_KEYUP :
-                  
-              switch(event->key.keysym.sym)
-               {
-                   case SDLK_UP : 
+
+                     }
+                     
+                                 
+                     if(p->up==0) 
+                     {            
                         p->num=0;          /// animate the jump
                         p->pos_p.y=p->gravite;  //// gravite
                    
-                          break; 
-                          }    
-    } 
+                       }  
 }
 
 
@@ -211,7 +233,7 @@ void super_jump_perso(personne *p,SDL_Event * event)
 
  void animer_perso(personne *p)
 {
-
+       p->num++;
       if(p->num==3)
        p->num=0;
 

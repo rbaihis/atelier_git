@@ -44,7 +44,7 @@ typedef struct
 	
 	int        mvtx,mvty,accelerer,super_jump;  /// mvtx = deplacement |  mvty = saut
 	int        etat,gravite;       /// etat 1 en mvmnt 0 stable 
-	int        direction,num;/// direc: 0 droite 1 gauche 2 attq  "ligne"  
+	int        direction,num,up;/// direc: 0 droite 1 gauche 2 attq  "ligne"  
                                  ///num : numero de limage "colone"
     
      } personne;
@@ -89,13 +89,15 @@ void scrolling(personne *p,background *back);
 //perso_p tache :med 
 
 void initPerso(personne *p);
+void init_deuxieme_Perso(personne *a);
+
 void afficherPerso(personne p, SDL_Surface * screen);
 
 
-void deplacer_perso(personne *p, SDL_Event * event);
+void deplacer_perso(personne *p);
 void accelrer_perso(personne *p);
 
-void jump_perso(personne *p,SDL_Event * event);
+void jump_perso(personne *p);
 void super_jump_perso(personne *p,SDL_Event * event);
 
  void animer_perso(personne *p);
