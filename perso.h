@@ -89,7 +89,7 @@ void scrolling(personne *p,background *back);
 //perso_p tache :med 
 
 void initPerso(personne *p);
-void init_deuxieme_Perso(personne *a);
+
 
 void afficherPerso(personne p, SDL_Surface * screen);
 
