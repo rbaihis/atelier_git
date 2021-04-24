@@ -21,9 +21,9 @@ SDL_Surface *screen=NULL;
 SDL_WM_SetCaption("My Game Window",NULL);
 screen=SDL_SetVideoMode( screen_w,screen_h,32,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE /*  |SDL_FULLSCREEN */);
 
-SDL_Surface *image_play=NULL,*image_option=NULL,*image_quit=NULL,*image_background=NULL,*image_animation=NULL,*image_animation1=NULL,*texte=NULL ; 
+SDL_Surface *image_play=NULL,*image_option=NULL,*image_quit=NULL,*image_background=NULL,*image_animation=NULL,*image_animation1=NULL,*texte=NULL,*texte1=NULL,*texte2=NULL,*texte3=NULL,*texte4=NULL,*image_load=NULL,*image_multi=NULL,*image_control ; 
 
-SDL_Rect pos_background,back,back1,positionFont,pos_play,pos_option,pos_quit;
+SDL_Rect pos_background,back,back1,positionFont,positionFont1,positionFont2,positionFont3,positionFont4,pos_play,pos_option,pos_quit,pos_load,pos_multi,pos_control;
 
 
 SDL_Event  event; // input events
@@ -35,18 +35,33 @@ music=Mix_LoadMUS("resources/shower.mp3");
 Mix_PlayMusic(music,-1); //     -1 => infinite loop the song
 Mix_Chunk *sound=NULL;
 
-           // text
+// text
 TTF_Init();
+TTF_Font *police=NULL,*police1=NULL  ;
+SDL_Color  colorchoice,colorchoice1;
 
-TTF_Font *police=NULL ;
-police=TTF_OpenFont("resources/Deadly.ttf",90); 
-SDL_Color  colorchoice={255,051,255}; // affecting color choice in struct color .
-texte=TTF_RenderText_Blended(police,"M E N U",colorchoice); // affecting all in surface
+police1=TTF_OpenFont("resources/Plankton.ttf",30); 
+colorchoice1.r=0; 
+colorchoice1.g=0; 
+colorchoice1.b=0;
+texte1=TTF_RenderText_Blended(police1,"J=Jouer",colorchoice1);
+texte2=TTF_RenderText_Blended(police1,"O=Option",colorchoice1);
+texte3=TTF_RenderText_Blended(police1,"Q=Quitter",colorchoice1);
+texte4=TTF_RenderText_Blended(police1,"F=Full Screen",colorchoice1);
 
 
-image_background=IMG_Load("resources/backg.png"); 
+police=TTF_OpenFont("resources/VL.otf",90); 
+colorchoice.r=254; 
+colorchoice.g=163; 
+colorchoice.b=71;
+texte=TTF_RenderText_Blended(police,"M E N U",colorchoice);
+
+
+
+//fin text
+//images
+image_background=IMG_Load("resources/background.png"); 
 image_animation=IMG_Load("resources/1.png");
-
 image_animation1=IMG_Load("resources/2.png");
 
 
@@ -57,12 +72,19 @@ image_option=IMG_Load("resources/option.png");
 
 image_quit=IMG_Load("resources/quit.png");
 
+image_load=IMG_Load("resources/loada.png");
+
+image_multi=IMG_Load("resources/multa.png");
+
+image_control=IMG_Load("resources/csa.png");
+
 back1.y=660;
 
       sound=Mix_LoadWAV("resources/sound1.wav");
  // boucle menu principal 
 while(a==1)
 {
+
 
 while(SDL_PollEvent(&event)) 
  {
@@ -135,6 +157,33 @@ while(SDL_PollEvent(&event))
     Mix_PlayChannel(-1,sound,0);
     break;
     }       
+else if (  event.motion.x>pos_load.x && event.motion.x<pos_load.x+pos_load.w && event.motion.y>pos_load.y && event.motion.y<pos_load.y+pos_load.h)
+    {
+    image_load=IMG_Load("resources/loadb.png");
+    SDL_BlitSurface(image_load,NULL,screen,&pos_load);
+ 
+    Mix_PlayChannel(-1,sound,0);
+    break;
+    }       
+
+else if (  event.motion.x>pos_multi.x && event.motion.x<pos_multi.x+pos_multi.w && event.motion.y>pos_multi.y && event.motion.y<pos_multi.y+pos_multi.h)
+    {
+    image_multi=IMG_Load("resources/multb.png");
+    SDL_BlitSurface(image_multi,NULL,screen,&pos_multi);
+ 
+    Mix_PlayChannel(-1,sound,0);
+    break;
+    }       
+
+else if (  event.motion.x>pos_control.x && event.motion.x<pos_control.x+pos_control.w && event.motion.y>pos_control.y && event.motion.y<pos_control.y+pos_control.h)
+    {
+    image_control=IMG_Load("resources/csb.png");
+    SDL_BlitSurface(image_control,NULL,screen,&pos_control);
+ 
+    Mix_PlayChannel(-1,sound,0);
+    break;
+    }       
+
      else 
     {    
     image_play=IMG_Load("resources/play.png");  
@@ -145,6 +194,15 @@ while(SDL_PollEvent(&event))
     
     image_quit=IMG_Load("resources/quit.png");
     SDL_BlitSurface(image_quit,NULL,screen,&pos_quit); 
+
+    image_load=IMG_Load("resources/loada.png");
+    SDL_BlitSurface(image_load,NULL,screen,&pos_load);
+
+    image_multi=IMG_Load("resources/multa.png");
+    SDL_BlitSurface(image_multi,NULL,screen,&pos_multi);
+
+   image_control=IMG_Load("resources/csa.png");
+    SDL_BlitSurface(image_control,NULL,screen,&pos_control);
     }   
     break;
   
@@ -179,9 +237,37 @@ while(SDL_PollEvent(&event))
 
 
 
+
+
+
 pos_background.y=0;  
 pos_background.x=0;
 SDL_BlitSurface(image_background,NULL,screen,&pos_background); 
+
+
+
+
+
+positionFont1.x=1250; 
+positionFont1.y= 260; 
+SDL_BlitSurface(texte1 ,NULL,screen,&positionFont1);
+
+
+
+positionFont2.x=1250; 
+positionFont2.y= 310; 
+SDL_BlitSurface(texte2 ,NULL,screen,&positionFont2); 
+
+
+positionFont3.x=1250; 
+positionFont3.y= 360; 
+SDL_BlitSurface(texte3 ,NULL,screen,&positionFont3); 
+
+
+positionFont4.x=1250; 
+positionFont4.y= 410; 
+SDL_BlitSurface(texte4 ,NULL,screen,&positionFont4);
+ 
 
 positionFont.x=(screen_w-positionFont.w)/2-10; 
 positionFont.y= (screen_h-positionFont.h)/14; 
@@ -200,7 +286,7 @@ if(back.y>600)
      
 
 back1.y -= move;         
-back1.x=360; 
+back1.x=20; 
 
 if(back1.y <0)
      {
@@ -209,19 +295,30 @@ if(back1.y <0)
      } 
   SDL_BlitSurface(image_animation1,NULL,screen,&back1);
                            
- pos_play.x= (screen_w-pos_play.w)/2;
+ pos_play.x= 450;
  pos_play.y= 0+positionFont.h+110;  
  SDL_BlitSurface(image_play,NULL,screen,&pos_play);
  
- pos_option.x= (screen_w-pos_option.w)/2;
- pos_option.y= 0+positionFont.h+220;
+ pos_load.x= 450;
+ pos_load.y= 0+positionFont.h+220;  
+ SDL_BlitSurface(image_load,NULL,screen,&pos_load);
+
+ pos_option.x= 450;
+ pos_option.y= 0+positionFont.h+330;
  SDL_BlitSurface(image_option,NULL,screen,&pos_option);    
 
- pos_quit.x= (screen_w- pos_quit.w)/2;
+ pos_control.x= 700;
+ pos_control.y= 0+positionFont.h+110;  
+ SDL_BlitSurface(image_control,NULL,screen,&pos_control);
+
+ pos_multi.x= 700;
+ pos_multi.y= 0+positionFont.h+220;  
+ SDL_BlitSurface(image_multi,NULL,screen,&pos_multi);
+
+ pos_quit.x= 700;
  pos_quit.y= 0+positionFont.h+330;
  SDL_BlitSurface(image_quit,NULL,screen,&pos_quit);
-  
-  
+
 SDL_Delay(1000/60);  
                // mise a jour
  SDL_Flip(screen);
