@@ -1,7 +1,7 @@
 #include "header.h"
 #include "background.h"
 int main()
-{
+{int ghayth
   int width=1900,height=750;// window size
   // ES init 
   ennemi es ; int x=1,y=0,z=0; int speed=5;  es.speed=speed; es.faster=1; 
