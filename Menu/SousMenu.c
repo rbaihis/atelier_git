@@ -123,6 +123,40 @@ SDL_Quit;
 Mix_FreeMusic(music);
 }
 
+/*Sauvegarde_jeu(char *ch)
+{
+
+
+FILE*fichier=NULL;
+    fichier=fopen(ch,"w"); //ouverture du fichier
+
+    if(fichier!=NULL)
+    {
+           
+
+
+   fclose(fichier);
+}
+
+
+}
+
+Load_game(char *ch)
+{
+FILE*fichier=NULL;
+    fichier=fopen(ch,"r"); //ouverture du fichier
+
+    if(fichier!=NULL)
+    {
+           
+
+
+   fclose(fichier);
+}
+
+
+
+}*/
 
 
 

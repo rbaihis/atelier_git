@@ -20,5 +20,6 @@ SM init_SM(SM s);
 void Afficher_SM(SM s,SDL_Surface *screen,int i);
 int update_SM(SM s,int *g);
 void liberer_SM(Mix_Chunk *sound,Mix_Music *music);
-
+//Sauvegarde_jeu(char *ch);
+//Load_game(char *ch);
 #endif
