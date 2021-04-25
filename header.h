@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -62,6 +64,23 @@ Mix_Music *music;
 Mix_Chunk *son;
 }background;
 
+//GHAYTH 
+typedef struct
+{
+   SDL_Surface *background;
+SDL_Rect positionEcran,positionFont,positionFont1,positionFont2,positionFont3;
+SDL_Surface *image1,*image2,*image3,*image4;
+SDL_Surface *texte; /*!< test*/
+TTF_Font *police; 
+   SDL_Event event;
+   SDL_Color colorchoice;
+   char q[100];
+   char r1[30];
+   char r2[30];
+   char r3[30];
+Mix_Chunk *sound;
+
+}enigme;
 
 
 
@@ -95,6 +114,26 @@ int collision_bb( personne p, ennemi es);//ok*****
 void afficher_ennemi2(ennemi * es, SDL_Surface * screen); // calling animerfunction inside if used 
 void deplacement_settings(ennemi * es,int s_posx ,int s_posy); // inter x and y position via parametre
 void deplacement_settings2(ennemi * es,personne *p); // placing ennemi in fron of perso by just call it 
+
+
+
+//Enigme tache: Ghayth
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+void init_alea(unsigned int n);
+int alea();
+int alea2();
+enigme generer(char *ch,enigme e,SDL_Surface *screen,int *n2);
+void afficher(SDL_Surface *screen,enigme e);
+void free_memory(TTF_Font *police,SDL_Surface *texte,Mix_Chunk *sound);
+
+
+
+
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
 
 
 
