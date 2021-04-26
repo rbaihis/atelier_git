@@ -33,11 +33,18 @@ typedef struct
 
 //**************************
 
+
+/** 
+* @struct personnage 
+* @brief struct for personne 
+*/
+
+
 typedef struct 
     {
     
-	SDL_Surface * image[2][3];  
-	SDL_Rect    pos_p;
+	SDL_Surface * image[3][3];  /*!< Surface*/
+	SDL_Rect    pos_p;           /*!< Rectangle*/
 	
 	vie        vie_perso ;
 	score      score_perso ; 
@@ -89,13 +96,14 @@ void scrolling(personne *p,background *back);
 //perso_p tache :med 
 
 void initPerso(personne *p);
-
+void init(personne *p , int numperso);
 
 void afficherPerso(personne p, SDL_Surface * screen);
 
 
 void deplacer_perso(personne *p);
 void accelrer_perso(personne *p);
+void attack_perso(personne *p);
 
 void jump_perso(personne *p);
 void super_jump_perso(personne *p,SDL_Event * event);
